@@ -1,0 +1,165 @@
+
+									最长上升子序列
+#include <iostream>
+#include <cstdio>
+#include <algorithm>
+using namespace std;
+#define inf 0x3f3f3f
+constint N = 40000+10;
+int a[N],dp[N],top;
+intbinary_search(inti)
+{
+intl,r,mid;
+    l=1,r=top;
+    while(l<r)
+    {
+        mid=l+(r-l)/2;
+        if(dp[mid]>=a[i])
+            r=mid;
+        else
+            l=mid+1;
+    }
+    return l;
+}//
+intmain()
+{
+int n;
+    while(~scanf("%d",&n))
+    {
+for(inti=1;i<=n;i++)
+scanf("%d",a+i);
+dp[1]=a[1];
+        top=1;
+for(inti=2;i<=n;i++)
+        {
+            if(a[i]>dp[top])
+dp[++top]=a[i];
+            else
+            {
+intpos=upper_bound(dp, dp+top, a[i])-dp;//binary_search(i);
+dp[pos]=a[i];
+            }
+        }
+printf("%d\n",top);
+    }
+    return 0;
+}
+
+Floyd
+for(inti=0;i<n;i++)
+for(int j=0;j<n;j++)
+for(int k=0;k<n;k++)
+if(path[j][i]!=inf&&path[i][k]!=inf&&path[j][k]>path[j][i]+path[i][k])  //找中间节点更新两个点之间的最短路
+                        path[k][j]=path[j][k]=path[j][i]+path[i][k];
+
+
+intday_diff(intyear_start, intmonth_start, intday_start
+            , intyear_end, intmonth_end, intday_end)  
+{  
+int y2, m2, d2;  
+int y1, m1, d1;  
+
+    m1 = (month_start + 9) % 12;  
+    y1 = year_start - m1/10;  
+    d1 = 365*y1 + y1/4 - y1/100 + y1/400 + (m1*306 + 5)/10 + (day_start - 1);  
+
+    m2 = (month_end + 9) % 12;  
+    y2 = year_end - m2/10;  
+    d2 = 365*y2 + y2/4 - y2/100 + y2/400 + (m2*306 + 5)/10 + (day_end - 1);  
+
+    return (d2 - d1);  
+}  
+
+int main(void)  
+{  
+printf("%d\n", day_diff(2015, 1, 1, 2015, 1, 8));  
+printf("%d\n", day_diff(2015, 1, 29, 2015, 2, 9));  
+
+    return 0;  
+}  
+
+void CaculateWeekDay(inty,int m, int d)
+{
+if(m==1||m==2) {
+m+=12;
+y--;
+}
+intiWeek=(d+2*m+3*(m+1)/5+y+y/4-y/100+y/400)%7;
+switch(iWeek)
+{
+case 0: printf("星期一\n"); break;
+case 1: printf("星期二\n"); break;
+case 2: printf("星期三\n"); break;
+case 3: printf("星期四\n"); break;
+case 4: printf("星期五\n"); break;
+case 5: printf("星期六\n"); break;
+case 6: printf("星期日\n"); break;
+}
+}
+
+#include<bits/stdc++.h>
+using namespace std;
+typedef long longll;
+constll MOD=1e9+7;
+constintinf=0x3f3f3f3f;
+constint N=205;
+int dis[N];
+int m[N][N];
+int vis[N];
+void init(){
+memset(vis,0,sizeof(vis));
+memset(dis,0,sizeof(dis));
+for(inti=0;i<205;i++)
+for(int j=0;j<205;j++)
+            if(i==j) m[i][j]=0;
+            else m[i][j]=inf;
+}
+intmain()
+{
+intn,M;
+    while(cin>>n>>M){
+intx,y,t;
+ints,e;
+init();
+for(inti=0;i<M;i++){
+scanf("%d%d%d",&x,&y,&t);
+            m[x][y]=m[y][x]=min(m[x][y],t);
+        }
+      //  cout<<"llll"<<endl;
+scanf("%d%d",&s,&e);
+for(inti=0;i<n;i++)
+            dis[i]=m[s][i];
+        vis[s]=1;
+for(inti=0;i<n-1;i++){
+intminn=inf,u;
+for(int j=0;j<n;j++){
+                if(vis[j]==0&&minn>dis[j]){
+minn=dis[j];
+                    u=j;
+                }
+            }
+            vis[u]=1;
+for(int j=0;j<n;j++){
+                if(m[u][j]<inf)
+                    if(dis[j]>dis[u]+m[u][j])
+                        dis[j]=dis[u]+m[u][j];
+            }
+        }
+        if(dis[e]<inf)
+cout<<dis[e]<<endl;
+        else
+cout<<-1<<endl;
+    }
+    return 0;
+}
+
+•  #include<time.h>  
+•  int main()  
+•  {  
+•      clock_t startTime=clock();  
+•      {  
+•          //这里是我们要测试的代码;  
+•      }  
+•      clock_t endTime=clock();  
+•      cout<<"运行时间为：:"<<endTime-startTime<<"ms"<<endl;  
+•  } 
