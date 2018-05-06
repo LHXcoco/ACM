@@ -1,0 +1,7 @@
+1.exp（x） 表示e的x次
+2.cout<<fixed<<setprecision(y)<<ans<<endl  保留y位小数（加fixed会保留0）
+3.std::ios::sync_with_stdio(false);  关闭同步
+4.h(n)=h(n-1)*(4*n-2)/(n+1);    h(n)=C(2n,n)/(n+1)  h(n)=c(2n,n)-c(2n,n-1) 卡特兰数递推式
+5.sort的cmp函数参数里加const&或则结构体里面重载'<'在某些情况下能加快速度（貌似重载更快？）
+6.统计一个数二进制中1的数 while(x) cnt++,x&=(x-1);
+7.用来标记状态的数组用bool型能较少内存
